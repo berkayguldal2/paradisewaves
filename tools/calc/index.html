@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kâr Hesaplama Aracı</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .calculator {
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.1);
+      width: 300px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #10b981;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .result {
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h3>Kâr Hesaplayıcı</h3>
+    <input type="number" id="alisFiyat" placeholder="Alış Fiyatı" step="0.01">
+    <input type="number" id="birim" placeholder="Birim Sayısı" step="1">
+    <input type="number" id="suanFiyat" placeholder="Şuanki Fiyat" step="0.01">
+    <button onclick="hesaplaKar()">HESAPLA</button>
+    <div class="result" id="sonuc"></div>
+  </div>
+
+  <script>
+    function hesaplaKar() {
+      const alisFiyat = parseFloat(document.getElementById("alisFiyat").value);
+      const birim = parseFloat(document.getElementById("birim").value);
+      const suanFiyat = parseFloat(document.getElementById("suanFiyat").value);
+
+      if (isNaN(alisFiyat) || isNaN(birim) || isNaN(suanFiyat)) {
+        document.getElementById("sonuc").innerText = "Lütfen tüm alanları doldurun.";
+        return;
+      }
+
+      const toplamAlis = alisFiyat * birim;
+      const toplamSuan = suanFiyat * birim;
+      const karMiktar = toplamSuan - toplamAlis;
+      const karYuzde = ((suanFiyat - alisFiyat) / alisFiyat) * 100;
+      const birimKar = suanFiyat - alisFiyat;
+
+      document.getElementById("sonuc").innerHTML = `
+        Birim başı kâr: <strong>${birimKar.toFixed(2)}</strong><br>
+        Toplam kâr: <strong>${karMiktar.toFixed(2)}</strong><br>
+        Kâr yüzdesi: <strong>${karYuzde.toFixed(2)}%</strong>
+      `;
+    }
+  </script>
+</body>
+</html>
