@@ -2,36 +2,56 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Arka Planlı Sayfa</title>
+  <title>Curved Neon Yazılar</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/brittany-signature" rel="stylesheet">
+
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
-      background-image: url('arkaplan.jpg');
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background-image: url('background.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      height: 100vh;
-      font-family: sans-serif;
-      color: white;
       display: flex;
       justify-content: center;
       align-items: center;
-
-      /* parlaklık filtresi */
-      filter: brightness(50%);
+      color: white;
     }
 
-    /* içeriği parlaklıktan etkilenmesin diye ayrı katman */
-    .content {
-      position: absolute;
-      color: white;
-      font-size: 2rem;
-      filter: brightness(200%); /* tersini uygula ki yazı net görünsün */
+    .container {
+      display: flex;
+      gap: 30px;
+      transform: rotateZ(-2deg) rotateY(5deg); /* Eğrilik efekti */
+    }
+
+    .dm-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 3rem;
+    }
+
+    .brittany-text {
+      font-family: 'Brittany Signature', cursive;
+      font-size: 3rem;
+      color: #0ff;
+      text-shadow:
+        0 0 5px #0ff,
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 40px #0ff;
     }
   </style>
 </head>
 <body>
-  <div class="content">Hoş Geldin!</div>
+  <div class="container">
+    <div class="dm-text">paradise</div>
+    <div class="brittany-text">waves</div>
+  </div>
 </body>
 </html>
