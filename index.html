@@ -1,141 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>paradise waves!</title>
-
-<!-- 98.css CDN -->
-<link rel="stylesheet" href="https://unpkg.com/98.css" />
-
-<style>
-  /* Masaüstünde Windows 98 yeşilimsi arkaplan */
-  body {
-    background-color: #008080; /* Win98 tarzı teal renk */
-    min-height: 100vh;
-    margin: 0;
-    padding: 20px;
-    font-family: 'MS Sans Serif', Tahoma, Geneva, sans-serif;
-  }
-
-  /* Windows 98 pencere kapsayıcısı */
-  .win98-window {
-    max-width: 700px;
-    margin: 30px auto;
-  }
-
-  /* Bizim orijinal içerik */
-  .original-content {
-    max-width: 700px;
-    margin: 20px auto;
-    color: white;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  /* Mobilde Windows 98 pencereyi gizle, orijinal içeriği göster */
-  @media (max-width: 767px) {
-    body {
-      background-color: white !important;
-      padding: 10px !important;
-    }
-
-    .win98-window {
-      display: none !important;
-    }
-
-    .original-content {
-      display: block !important;
-      color: black !important;
-      margin-top: 30px;
-    }
-  }
-
-  /* Masaüstünde orijinal içerik varsayılan gizli */
-  .original-content {
-    display: none;
-  }
-</style>
-</head>
-<body>
-
-<!-- Windows 98 stili pencere -->
-<div class="window win98-window" style="padding: 1em;">
-  <div class="title-bar">
-    <div class="title-bar-text">paradise waves!</div>
-    <div class="title-bar-controls">
-      <button aria-label="Close" onclick="window.close()"></button>
-    </div>
-  </div>
-  <div class="window-body">
-
-    <!-- Buraya senin orijinal içeriğini koyuyorum -->
-    <div class="background" style="
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: url('background.jpg') center/cover no-repeat;
-      filter: brightness(50%);
-      z-index: -1;
-    "></div>
-
-    <div class="centered-wrapper" style="margin-top: 10vh; width: 90%; max-width: 700px; color: white;">
-
-      <svg viewBox="0 0 700 350" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: auto;">
-        <defs>
-          <path id="curve1" d="M120,170 A350,200 0 0,1 580,170" />
-          <path id="curve2" d="M120,220 A350,200 0 0,1 580,220" />
-          <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="black" />
-          </filter>
-          <filter id="neon" x="-45%" y="-45%" width="200%" height="200%">
-            <feDropShadow dx="0" dy="0" stdDeviation="1" flood-color="#0ff" />
-            <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#0ff" />
-            <feDropShadow dx="0" dy="0" stdDeviation="25" flood-color="#0ff" />
-          </filter>
-        </defs>
-
-        <text class="dm-text" style="font-family: 'DM Sans', sans-serif; fill: white; font-size: clamp(24px, 4vw, 48px); filter: url(#shadow);">
-          <textPath href="#curve1" startOffset="45%" text-anchor="middle">paradise</textPath>
-        </text>
-
-        <text class="brittany-text" style="font-family: 'Brittany Signature', cursive; fill: #38b6ff; font-size: clamp(30px, 6vw, 64px); filter: url(#neon);">
-          <textPath href="#curve2" startOffset="65%" text-anchor="middle">waves</textPath>
-        </text>
-      </svg>
-
-      <div class="menu" style="margin-top: 20px;">
-        <div class="top-row" style="margin-bottom: 10px;">
-          <a href="http://paradisewaves.fun/socials" style="color: white; text-decoration: none; margin-right: 10px;">socials</a>
-          <a href="http://paradisewaves.fun/projects" style="color: white; text-decoration: none; margin-right: 10px;">projects</a>
-          <a href="http://paradisewaves.fun/dotfiles" style="color: white; text-decoration: none;">dotfiles</a>
-        </div>
-
-        <div class="centered-buttons" style="margin-bottom: 10px;">
-          <a href="http://paradisewaves.fun/tools" style="color: white; text-decoration: none; margin-right: 10px;">tools</a>
-          <a href="http://paradisewaves.fun/files" style="color: white; text-decoration: none; margin-right: 10px;">files</a>
-          <a href="http://paradisewaves.fun/redirects" style="color: white; text-decoration: none;">redirects</a>
-        </div>
-
-        <div class="bottom-buttons">
-          <a href="http://paradisewaves.fun/about" style="color: white; text-decoration: none; margin-right: 10px;">about</a>
-          <a href="http://paradisewaves.fun/source" style="color: white; text-decoration: none; margin-right: 10px;">source</a>
-          <a href="http://paradisewaves.fun/contact" style="color: white; text-decoration: none;">contact</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Mobilde gösterilecek orijinal içerik (masaüstünde gizli) -->
-<!-- Mobilde gösterilecek orijinal içerik (masaüstünde gizli) -->
-<div class="original-content">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>paradise waves!</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.cdnfonts.com/css/brittany-signature" rel="stylesheet" />
   <style>
     @font-face {
       font-family: 'Neue Machina';
       src: url('NeueMachina.otf') format('opentype');
     }
 
-    body, .original-content {
+    body {
       margin: 0;
       min-height: 100vh;
       display: flex;
@@ -191,110 +68,110 @@
       height: auto;
     }
 
-    /* Logo neon efektleri hep kalsın */
+     /* Logo neon efektleri hep kalsın */
+  .dm-text {
+    font-family: 'DM Sans', sans-serif;
+    fill: white;
+    font-size: clamp(24px, 4vw, 48px);
+    filter: url(#shadow);
+  }
+  
+  .brittany-text {
+    font-family: 'Brittany Signature', cursive;
+    fill: #38b6ff;
+    font-size: clamp(30px, 6vw, 64px);
+    filter: url(#neon);
+  }
+  
+  /* Menü linklerinde mavi glow sadece hoverda gelsin */
+  .menu a, .menu button {
+    font-family: 'Neue Machina', monospace;
+    font-size: clamp(18px, 4vw, 32px);
+    color: white;
+    text-decoration: none;
+    cursor: url('pointer.cur'), pointer;
+    position: relative;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    padding: 8px 16px;
+    display: inline-block;
+    background: none;
+    border: none;
+    filter: none; /* Sürekli glow kapalı */
+    user-select: none;
+  }
+  
+  .menu a:hover, .menu button:hover {
+    transform: scale(1.2);
+    filter:
+      drop-shadow(0 0 5px #38b6ff); /* Hoverda mavi glow aktif */
+  }
+  
+  /* glitch efektleri başlangıçta gizli */
+  .menu a::before,
+  .menu a::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    color: #0ff;
+    clip: rect(0, 9999px, 18px, 0);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  /* sadece hoverda glitch gözükür */
+  .menu a:hover::before,
+  .menu a:hover::after {
+    opacity: 1;
+  }
+  
+  .menu a:hover::before {
+    animation: glitchTop 0.3s infinite linear alternate-reverse;
+  }
+  
+  .menu a:hover::after {
+    animation: glitchBottom 0.3s infinite linear alternate-reverse;
+    color: #f0f;
+  }
+
+  @keyframes glitchTop {
+    0% { clip: rect(0, 9999px, 12px, 0); transform: translate(-2px, -1px); }
+    100% { clip: rect(0, 9999px, 18px, 0); transform: translate(2px, 1px); }
+  }
+
+  @keyframes glitchBottom {
+    0% { clip: rect(12px, 9999px, 18px, 0); transform: translate(2px, -1px); }
+    100% { clip: rect(10px, 9999px, 16px, 0); transform: translate(-2px, 1px); }
+  }
+
+  /* Buton gruplarına aralık */
+  .top-row, .centered-buttons, .bottom-buttons {
+    margin-bottom: 1em;
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .centered-wrapper {
+      width: 95%;
+      margin-top: 5vh;
+    }
+    svg {
+      font-size: smaller;
+    }
     .dm-text {
-      font-family: 'DM Sans', sans-serif;
-      fill: white;
-      font-size: clamp(24px, 4vw, 48px);
-      filter: url(#shadow);
+      font-size: clamp(70px, 6vw, 32px);
     }
-    
     .brittany-text {
-      font-family: 'Brittany Signature', cursive;
-      fill: #38b6ff;
-      font-size: clamp(30px, 6vw, 64px);
-      filter: url(#neon);
+      font-size: clamp(100px, 8vw, 40px);
     }
-    
-    /* Menü linklerinde mavi glow sadece hoverda gelsin */
     .menu a, .menu button {
-      font-family: 'Neue Machina', monospace;
-      font-size: clamp(18px, 4vw, 32px);
-      color: white;
-      text-decoration: none;
-      cursor: url('pointer.cur'), pointer;
-      position: relative;
-      transition: transform 0.3s ease, filter 0.3s ease;
-      padding: 8px 16px;
-      display: inline-block;
-      background: none;
-      border: none;
-      filter: none; /* Sürekli glow kapalı */
-      user-select: none;
-    }
-    
-    .menu a:hover, .menu button:hover {
-      transform: scale(1.2);
-      filter:
-        drop-shadow(0 0 5px #38b6ff); /* Hoverda mavi glow aktif */
-    }
-    
-    /* glitch efektleri başlangıçta gizli */
-    .menu a::before,
-    .menu a::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-      color: #0ff;
-      clip: rect(0, 9999px, 18px, 0);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-    
-    /* sadece hoverda glitch gözükür */
-    .menu a:hover::before,
-    .menu a:hover::after {
-      opacity: 1;
-    }
-    
-    .menu a:hover::before {
-      animation: glitchTop 0.3s infinite linear alternate-reverse;
-    }
-    
-    .menu a:hover::after {
-      animation: glitchBottom 0.3s infinite linear alternate-reverse;
-      color: #f0f;
-    }
-
-    @keyframes glitchTop {
-      0% { clip: rect(0, 9999px, 12px, 0); transform: translate(-2px, -1px); }
-      100% { clip: rect(0, 9999px, 18px, 0); transform: translate(2px, 1px); }
-    }
-
-    @keyframes glitchBottom {
-      0% { clip: rect(12px, 9999px, 18px, 0); transform: translate(2px, -1px); }
-      100% { clip: rect(10px, 9999px, 16px, 0); transform: translate(-2px, 1px); }
-    }
-
-    /* Buton gruplarına aralık */
-    .top-row, .centered-buttons, .bottom-buttons {
-      margin-bottom: 1em;
-      text-align: center;
-    }
-    
-    @media (max-width: 480px) {
-      .centered-wrapper {
-        width: 95%;
-        margin-top: 5vh;
-      }
-      svg {
-        font-size: smaller;
-      }
-      .dm-text {
-        font-size: clamp(70px, 6vw, 32px);
-      }
-      .brittany-text {
-        font-size: clamp(100px, 8vw, 40px);
-      }
-      .menu a, .menu button {
-        font-size: clamp(22px, 5vw, 20px);
-        padding: 6px 10px;
-      }
+      font-size: clamp(22px, 5vw, 20px);
+      padding: 6px 10px;
     }
   </style>
+</head>
+<body>
 
   <div class="background"></div>
 
@@ -329,26 +206,21 @@
 
   <div class="menu">
     <div class="top-row">
-      <a href="http://paradisewaves.fun/socials" data-text="socials">socials</a>
-      <a href="http://paradisewaves.fun/projects" data-text="projects">projects</a>
-      <a href="http://paradisewaves.fun/dotfiles" data-text="dotfiles">dotfiles</a>
+      <a href="http://paradisewaves.fun/socials" id="link-socials">socials</a>
+      <a href="http://paradisewaves.fun/projects" id="link-socials">projects</a>
+      <a href="http://paradisewaves.fun/dotfiles" id="link-socials">dotfiles</a>
     </div>
 
     <div class="centered-buttons">
-      <a href="http://paradisewaves.fun/tools" data-text="tools">tools</a>
-      <a href="http://paradisewaves.fun/files" data-text="files">files</a>
-      <a href="http://paradisewaves.fun/redirects" data-text="redirects">redirects</a>
+      <a href="http://paradisewaves.fun/tools">tools</a>
+      <a href="http://paradisewaves.fun/files">files</a>
+      <a href="http://paradisewaves.fun/redirects">redirects</a>
     </div>
 
     <div class="bottom-buttons">
-      <a href="http://paradisewaves.fun/about" data-text="about">about</a>
-      <a href="http://paradisewaves.fun/source" data-text="source">source</a>
-      <a href="http://paradisewaves.fun/contact" data-text="contact">contact</a>
+      <a href="http://paradisewaves.fun/about">about</a>
+      <a href="http://paradisewaves.fun/source">source</a>
+      <a href="http://paradisewaves.fun/contact">contact</a>
     </div>
-  </div>
-
-</div>
-
-
 </body>
 </html>
