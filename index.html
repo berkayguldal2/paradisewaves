@@ -23,6 +23,7 @@
       font-size: 16px;
       cursor: url('arrow.cur'), auto;
       position: relative;
+      color: white;
     }
 
     body::before {
@@ -68,97 +69,97 @@
     }
 
      /* Logo neon efektleri hep kalsın */
-    .dm-text {
-      font-family: 'DM Sans', sans-serif;
-      fill: white;
-      font-size: clamp(24px, 4vw, 48px);
-      filter: url(#shadow);
-    }
-    
-    .brittany-text {
-      font-family: 'Brittany Signature', cursive;
-      fill: #38b6ff;
-      font-size: clamp(30px, 6vw, 64px);
-      filter: url(#neon);
-    }
-    
-    /* Menü linklerinde mavi glow sadece hoverda gelsin */
-    .menu a, .menu button {
-      font-family: 'Neue Machina', monospace;
-      font-size: clamp(18px, 4vw, 32px);
-      color: white;
-      text-decoration: none;
-      cursor: url('pointer.cur'), pointer;
-      position: relative;
-      transition: transform 0.3s ease, filter 0.3s ease;
-      padding: 8px 16px;
-      display: inline-block;
-      background: none;
-      border: none;
-      outline: none;
-      filter: none; /* Sürekli glow kapalı */
-      user-select: none;
-    }
-    
-    .menu a:hover, .menu button:hover {
-      transform: scale(1.2);
-      filter:
-        drop-shadow(0 0 5px #38b6ff); /* Hoverda mavi glow aktif */
-    }
-    
-    /* glitch efektleri başlangıçta gizli */
-    .menu a::before,
-    .menu a::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-      color: #0ff;
-      clip: rect(0, 9999px, 18px, 0);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-    
-    /* sadece hoverda glitch gözükür */
-    .menu a:hover::before,
-    .menu a:hover::after {
-      opacity: 1;
-    }
-    
-    .menu a:hover::before {
-      animation: glitchTop 0.3s infinite linear alternate-reverse;
-    }
-    
-    .menu a:hover::after {
-      animation: glitchBottom 0.3s infinite linear alternate-reverse;
-      color: #f0f;
-    }
+  .dm-text {
+    font-family: 'DM Sans', sans-serif;
+    fill: white;
+    font-size: clamp(24px, 4vw, 48px);
+    filter: url(#shadow);
+  }
+  
+  .brittany-text {
+    font-family: 'Brittany Signature', cursive;
+    fill: #38b6ff;
+    font-size: clamp(30px, 6vw, 64px);
+    filter: url(#neon);
+  }
+  
+  /* Menü linklerinde mavi glow sadece hoverda gelsin */
+  .menu a, .menu button {
+    font-family: 'Neue Machina', monospace;
+    font-size: clamp(18px, 4vw, 32px);
+    color: white;
+    text-decoration: none;
+    cursor: url('pointer.cur'), pointer;
+    position: relative;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    padding: 8px 16px;
+    display: inline-block;
+    background: none;
+    border: none;
+    filter: none; /* Sürekli glow kapalı */
+    user-select: none;
+  }
+  
+  .menu a:hover, .menu button:hover {
+    transform: scale(1.2);
+    filter:
+      drop-shadow(0 0 5px #38b6ff); /* Hoverda mavi glow aktif */
+  }
+  
+  /* glitch efektleri başlangıçta gizli */
+  .menu a::before,
+  .menu a::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    color: #0ff;
+    clip: rect(0, 9999px, 18px, 0);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  /* sadece hoverda glitch gözükür */
+  .menu a:hover::before,
+  .menu a:hover::after {
+    opacity: 1;
+  }
+  
+  .menu a:hover::before {
+    animation: glitchTop 0.3s infinite linear alternate-reverse;
+  }
+  
+  .menu a:hover::after {
+    animation: glitchBottom 0.3s infinite linear alternate-reverse;
+    color: #f0f;
+  }
 
-    @keyframes glitchTop {
-      0% { clip: rect(0, 9999px, 12px, 0); transform: translate(-2px, -1px); }
-      100% { clip: rect(0, 9999px, 18px, 0); transform: translate(2px, 1px); }
-    }
+  @keyframes glitchTop {
+    0% { clip: rect(0, 9999px, 12px, 0); transform: translate(-2px, -1px); }
+    100% { clip: rect(0, 9999px, 18px, 0); transform: translate(2px, 1px); }
+  }
 
-    @keyframes glitchBottom {
-      0% { clip: rect(12px, 9999px, 18px, 0); transform: translate(2px, -1px); }
-      100% { clip: rect(10px, 9999px, 16px, 0); transform: translate(-2px, 1px); }
-    }
+  @keyframes glitchBottom {
+    0% { clip: rect(12px, 9999px, 18px, 0); transform: translate(2px, -1px); }
+    100% { clip: rect(10px, 9999px, 16px, 0); transform: translate(-2px, 1px); }
+  }
 
-    .menu {
-      text-align: center;
-      margin-top: 40px;
-    }
-    .top-row, .centered-buttons, .bottom-buttons {
-      margin-bottom: 25px;
-    }
-    .top-row a, .top-row button {
-      margin: 0 10px;
-    }
-    .centered-buttons a, .bottom-buttons a {
-      margin: 0 15px;
-    }
+  /* Buton gruplarına aralık */
+  .top-row, .centered-buttons, .bottom-buttons {
+    margin-bottom: 1em;
+    text-align: center;
+  }
+
+  .control-buttons {
+    margin-top: 2em;
+    text-align: center;
+  }
+
+  .control-buttons button {
+    margin: 0 10px;
+  }
   </style>
 </head>
 <body>
@@ -199,8 +200,8 @@
   <div class="menu">
     <div class="top-row">
       <a href="http://paradisewaves.fun/socials" data-text="socials">socials</a>
-      <button id="music-toggle" data-text="music">music off</button>
-      <button id="lang-toggle" data-text="language">TR</button>
+      <a href="http://paradisewaves.fun/???????" data-text="music">music</a>
+      <a href="http://paradisewaves.fun/???????" data-text="language">language</a>
     </div>
     <div class="centered-buttons">
       <a href="http://paradisewaves.fun/tools" data-text="tools">tools</a>
@@ -212,90 +213,67 @@
       <a href="http://paradisewaves.fun/projects" data-text="projects">projects</a>
       <a href="http://paradisewaves.fun/contact" data-text="contact">contact</a>
     </div>
+    <div class="control-buttons">
+      <button id="music-toggle">Aç</button>
+      <button id="language-toggle">Dil</button>
+    </div>
   </div>
 
-  <!-- Audio element -->
-  <audio id="background-music" src="vaporwave-music.mp3" loop></audio>
+  <audio id="background-music" src="music.mp3" loop></audio>
 
   <script>
-    const musicToggleBtn = document.getElementById('music-toggle');
-    const langToggleBtn = document.getElementById('lang-toggle');
-    const music = document.getElementById('background-music');
+    // Elementler
+    const musicBtn = document.getElementById('music-toggle');
+    const langBtn = document.getElementById('language-toggle');
+    const audio = document.getElementById('background-music');
 
-    // Music başta kapalı
-    let isMusicPlaying = false;
+    // Varsayılan dil Türkçe
+    let language = localStorage.getItem('language') || 'tr';
+    let musicPlaying = localStorage.getItem('musicPlaying') === 'true';
 
-    musicToggleBtn.addEventListener('click', () => {
-      if (isMusicPlaying) {
-        music.pause();
-        musicToggleBtn.textContent = 'music off';
+    // Dil ve müzik butonlarını güncelle
+    function updateUI() {
+      if (language === 'tr') {
+        langBtn.textContent = 'Dil';
+        musicBtn.textContent = musicPlaying ? 'Kapat' : 'Aç';
       } else {
-        music.play();
-        musicToggleBtn.textContent = 'music on';
-      }
-      isMusicPlaying = !isMusicPlaying;
-    });
-
-    // Dil değişikliği ve localStorage işlemleri
-    const supportedLangs = ['tr', 'en'];
-    let currentLang = localStorage.getItem('siteLanguage') || 'tr';
-
-    function updateLanguageUI() {
-      // Buton üzerindeki dil kodunu değiştir
-      langToggleBtn.textContent = currentLang.toUpperCase();
-
-      // Basit örnek: sayfadaki linklerin textini değiştir (bu kısmı genişletebilirsin)
-      const textMap = {
-        tr: {
-          socials: "hesaplarım",
-          music: "müzik",
-          language: "dil",
-          tools: "araçlar",
-          files: "dosyalar",
-          redirects: "yönlendirmeler",
-          about: "hakkında",
-          projects: "projeler",
-          contact: "iletişim"
-        },
-        en: {
-          socials: "socials",
-          music: "music",
-          language: "language",
-          tools: "tools",
-          files: "files",
-          redirects: "redirects",
-          about: "about",
-          projects: "projects",
-          contact: "contact"
-        }
-      };
-
-      document.querySelectorAll('.menu a').forEach(a => {
-        const key = a.getAttribute('data-text');
-        if (textMap[currentLang][key]) {
-          a.textContent = textMap[currentLang][key];
-        }
-      });
-
-      // Music butonunu da güncelle
-      musicToggleBtn.setAttribute('data-text', textMap[currentLang]['music']);
-      if (isMusicPlaying) {
-        musicToggleBtn.textContent = textMap[currentLang]['music'] + " on";
-      } else {
-        musicToggleBtn.textContent = textMap[currentLang]['music'] + " off";
+        langBtn.textContent = 'Language';
+        musicBtn.textContent = musicPlaying ? 'Off' : 'On';
       }
     }
 
-    langToggleBtn.addEventListener('click', () => {
-      // Dil değiştir
-      const currentIndex = supportedLangs.indexOf(currentLang);
-      currentLang = supportedLangs[(currentIndex + 1) % supportedLangs.length];
-      localStorage.setItem('siteLanguage', currentLang);
-      updateLanguageUI();
+    // Müzik açma/kapatma fonksiyonu
+    function toggleMusic() {
+      if (musicPlaying) {
+        audio.pause();
+        musicPlaying = false;
+      } else {
+        audio.play();
+        musicPlaying = true;
+      }
+      localStorage.setItem('musicPlaying', musicPlaying);
+      updateUI();
+    }
+
+    // Dil değiştirme fonksiyonu
+    function toggleLanguage() {
+      language = language === 'tr' ? 'en' : 'tr';
+      localStorage.setItem('language', language);
+      updateUI();
+    }
+
+    // Sayfa yüklenince ayarları uygula
+    window.addEventListener('load', () => {
+      updateUI();
+      if (musicPlaying) {
+        audio.play().catch(() => { /* otomatik çalmayı engelleyen tarayıcı olabilir */ });
+      }
     });
 
-    // Sayfa yüklendiğinde dili ayarla
-    updateLanguageUI();
+    // Event listenerlar
+    musicBtn.addEventListener('click', toggleMusic);
+    langBtn.addEventListener('click', toggleLanguage);
   </script>
+
 </body>
 </html>
