@@ -9,7 +9,7 @@
   <style>
     @font-face {
       font-family: 'Neue Machina';
-      src: url('NeueMachina.otf') format('opentype');
+      src: url('/NeueMachina.otf') format('opentype');
     }
 
     body {
@@ -21,9 +21,9 @@
       justify-content: flex-start;
       background: transparent;
       font-size: 16px;
-      cursor: url('arrow.cur'), auto;
-      position: relative;
+      cursor: url('/arrow.cur'), auto;
       color: white;
+      position: relative;
     }
 
     body::before {
@@ -52,7 +52,7 @@
     .background {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: url('background.jpg') center/cover no-repeat;
+      background: url('/background.jpg') center/cover no-repeat;
       filter: brightness(50%);
       z-index: -1;
     }
@@ -114,7 +114,7 @@
       border: none;
       color: white;
       border-bottom: 2px solid white;
-      cursor: pointer;
+      cursor: url('/pointer.cur'), pointer;
     }
 
     .form-section button:hover {
