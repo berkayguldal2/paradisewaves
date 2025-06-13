@@ -22,8 +22,6 @@
       background: transparent;
       font-size: 16px;
       cursor: url('arrow.cur'), auto;
-
-      /* --- CRT Efekti Eklemeleri --- */
       position: relative;
     }
 
@@ -51,12 +49,6 @@
       z-index: 9999;
     }
 
-    @keyframes flicker {
-      0% { opacity: 1; }
-      50% { opacity: 0.85; }
-      100% { opacity: 1; }
-    }
-
     .background {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -79,24 +71,49 @@
     .dm-text {
       font-family: 'DM Sans', sans-serif;
       fill: white;
-      font-size: clamp(24px, 4vw, 48px); /* min 24, ideal 4vw, max 48 */
+      font-size: clamp(24px, 4vw, 48px);
       filter: url(#shadow);
     }
 
     .brittany-text {
       font-family: 'Brittany Signature', cursive;
       fill: #38b6ff;
-      font-size: clamp(30px, 6vw, 64px); /* min 30, ideal 6vw, max 64 */
+      font-size: clamp(30px, 6vw, 64px);
       filter: url(#neon);
     }
 
-    .menu {
-      margin-top: 8vh;
+    /* Menü üst ve alt için ayrı kapsayıcılar */
+    .menu-top,
+    .menu-bottom {
+      width: 90%;
+      max-width: 700px;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      width: 100%;
+      justify-content: center;
+      gap: 30px;
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    .menu-top {
+      top: 5vh; /* Ekranın üstü */
+    }
+
+    .menu-bottom {
+      bottom: 5vh; /* Ekranın altı */
+    }
+
+    /* Üstte 2 tuş için genişlik ayarı */
+    .menu-top a {
+      flex: 1 1 40%;
+      max-width: 200px;
+    }
+
+    /* Altta 3 tuş için genişlik ayarı */
+    .menu-bottom a {
+      flex: 1 1 30%;
+      max-width: 150px;
     }
 
     .menu a {
@@ -107,10 +124,18 @@
       cursor: url('pointer.cur'), pointer;
       position: relative;
       transition: transform 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      border-radius: 10px;
+      background: rgba(255 255 255 / 0.1);
+      user-select: none;
     }
 
     .menu a:hover {
       transform: scale(1.2);
+      background: rgba(56, 182, 255, 0.3);
     }
 
     .menu a::before,
@@ -179,11 +204,16 @@
     </svg>
   </div>
 
-  <div class="menu">
-    <a href="http://paradisewaves.fun" data-text="about">about</a>
-    <a href="http://paradisewaves.fun" data-text="projects">projects</a>
-    <a href="http://paradisewaves.fun" data-text="contact">contact</a>
-  </div>
+  <nav class="menu-top">
+    <a href="http://paradisewaves.fun/youtube" data-text="about">youtube</a>
+    <a href="http://paradisewaves.fun/files" data-text="projects">files</a>
+  </nav>
+
+  <nav class="menu-bottom">
+    <a href="http://paradisewaves.fun/about" data-text="about">about</a>
+    <a href="http://paradisewaves.fun/projects" data-text="projects">projects</a>
+    <a href="http://paradisewaves.fun/contact" data-text="contact">contact</a>
+  </nav>
 
 </body>
 </html>
