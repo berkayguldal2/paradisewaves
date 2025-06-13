@@ -1,7 +1,7 @@
 # Ways to contact me
 
 ### Email:
-berkayguldal2@gmail.com
+contact@paradisewaves.fun or berkay@paradisewaves.fun
 
 ### Instagram:
 @berkaygldal
