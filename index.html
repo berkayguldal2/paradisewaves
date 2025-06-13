@@ -71,8 +71,8 @@
   <div class="menu">
     <div class="top-row">
       <a href="http://paradisewaves.fun/socials" id="link-socials">socials</a>
-      <a href="#" id="link-music">music On</a>
-      <a href="#" id="link-language">language</a>
+      <a href="http://paradisewaves.fun/projects" id="link-socials">projects</a>
+      <a href="http://paradisewaves.fun/dotfiles" id="link-socials">dotfiles</a>
     </div>
 
     <div class="centered-buttons">
@@ -83,48 +83,8 @@
 
     <div class="bottom-buttons">
       <a href="http://paradisewaves.fun/about">about</a>
-      <a href="http://paradisewaves.fun/projects">projects</a>
+      <a href="http://paradisewaves.fun/source">source</a>
       <a href="http://paradisewaves.fun/contact">contact</a>
     </div>
-
-    <div class="control-buttons">
-      <button id="music-toggle" title="Toggle Music"></button>
-      <button id="language-toggle" title="Change Language"></button>
-    </div>
-  </div>
-
-  <audio id="background-music" src="music.mp3" loop></audio>
-
-  <script>
-    const musicBtn = document.getElementById('music-toggle');
-    const langBtn = document.getElementById('language-toggle');
-    const audio = document.getElementById('background-music');
-    const linkMusic = document.getElementById('link-music');
-
-    let musicPlaying = localStorage.getItem('musicPlaying') === 'true';
-
-    function updateUI() {
-      linkMusic.textContent = musicPlaying ? 'music Off' : 'music On';
-
-      if(musicPlaying && audio.paused) {
-        audio.play().catch(() => {});
-      } else if(!musicPlaying && !audio.paused) {
-        audio.pause();
-      }
-    }
-
-    function toggleMusic() {
-      musicPlaying = !musicPlaying;
-      localStorage.setItem('musicPlaying', musicPlaying);
-      updateUI();
-    }
-
-    musicBtn.addEventListener('click', toggleMusic);
-
-    window.addEventListener('load', () => {
-      updateUI();
-    });
-  </script>
-
 </body>
 </html>
