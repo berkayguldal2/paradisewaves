@@ -7,13 +7,20 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap" rel="stylesheet" />
   <link href="https://fonts.cdnfonts.com/css/brittany-signature" rel="stylesheet" />
   <style>
+    @font-face {
+      font-family: 'Neue Machina';
+      src: url('NeueMachina.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     body {
       margin: 0;
       height: 100vh;
       position: relative;
       overflow: hidden;
       font-size: 16px;
-      cursor: url('arrow.cur'), auto; /* Normal imleç */
+      cursor: url('arrow.cur'), auto;
     }
 
     .background {
@@ -29,14 +36,12 @@
       top: 25%;
       left: 50%;
       transform: translate(-50%, -50%);
-      cursor: url('pointer.cur'), pointer; /* Üzerine gelince pointer */
     }
 
     svg {
       width: 700px;
       height: 500px;
       overflow: visible;
-      cursor: url('pointer.cur'), pointer; /* Üzerine gelince pointer */
     }
 
     .dm-text {
@@ -44,8 +49,6 @@
       fill: white;
       font-size: 50px;
       filter: url(#shadow);
-      dominant-baseline: middle;
-      alignment-baseline: middle;
     }
 
     .brittany-text {
@@ -53,23 +56,73 @@
       fill: #38b6ff;
       font-size: 70px;
       filter: url(#neon);
-      dominant-baseline: middle;
-      alignment-baseline: middle;
     }
 
-    /* Mobil için font büyütme */
-    @media (max-width: 600px) {
-      svg {
-        width: 90vw;
-        height: auto;
-      }
+    .menu {
+      position: absolute;
+      top: 65%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
 
-      .dm-text {
-        font-size: 70px;
-      }
+    .menu a {
+      font-family: 'Neue Machina', sans-serif;
+      font-size: 32px;
+      color: white;
+      text-decoration: none;
+      cursor: url('pointer.cur'), pointer;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
 
-      .brittany-text {
-        font-size: 100px;
+    .menu a:hover {
+      transform: scale(1.2);
+    }
+
+    /* Glitch effect */
+    .menu a::before,
+    .menu a::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      color: #0ff;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .menu a:hover::before {
+      animation: glitchTop 0.3s infinite linear alternate-reverse;
+    }
+
+    .menu a:hover::after {
+      animation: glitchBottom 0.3s infinite linear alternate-reverse;
+      color: #f0f;
+    }
+
+    @keyframes glitchTop {
+      0% {
+        clip: rect(0, 9999px, 0, 0);
+        transform: translate(-2px, -2px);
+      }
+      100% {
+        clip: rect(0, 9999px, 30px, 0);
+        transform: translate(2px, 2px);
+      }
+    }
+
+    @keyframes glitchBottom {
+      0% {
+        clip: rect(60px, 9999px, 90px, 0);
+        transform: translate(2px, -2px);
+      }
+      100% {
+        clip: rect(20px, 9999px, 60px, 0);
+        transform: translate(-2px, 2px);
       }
     }
   </style>
@@ -107,6 +160,12 @@
         </textPath>
       </text>
     </svg>
+  </div>
+
+  <div class="menu">
+    <a href="http://paradisewaves.fun/about" data-text="about">about</a>
+    <a href="https://paradisewaves.fun/projects" data-text="projects">projects</a>
+    <a href="https://paradisewaves.fun/contact" data-text="contact">contact</a>
   </div>
 
 </body>
