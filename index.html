@@ -46,14 +46,14 @@
     .dm-text {
       font-family: 'DM Sans', sans-serif;
       fill: white;
-      font-size: 8vw;
+      font-size: clamp(24px, 4vw, 48px); /* min 24, ideal 4vw, max 48 */
       filter: url(#shadow);
     }
 
     .brittany-text {
       font-family: 'Brittany Signature', cursive;
       fill: #38b6ff;
-      font-size: 10vw;
+      font-size: clamp(30px, 6vw, 64px); /* min 30, ideal 6vw, max 64 */
       filter: url(#neon);
     }
 
