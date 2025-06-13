@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Markdown Viewer</title>
+  <title>About</title>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     body {
@@ -58,7 +58,7 @@
   </div>
 
   <script>
-    fetch('readme.md')
+    fetch('about.md')
       .then(response => {
         if (!response.ok) throw new Error('Markdown dosyası bulunamadı.');
         return response.text();
