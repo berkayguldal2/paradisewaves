@@ -7,21 +7,31 @@
     body {
       margin: 0;
       padding: 0;
-      background-image: url('background.jpg'); /* arka plan görselini bu dosya ile aynı klasöre koy */
-      background-size: cover; /* ekranı kaplasın */
+      background-image: url('arkaplan.jpg');
+      background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      height: 100vh; /* tam ekran yüksekliği */
+      height: 100vh;
       font-family: sans-serif;
       color: white;
       display: flex;
       justify-content: center;
       align-items: center;
+
+      /* parlaklık filtresi */
       filter: brightness(50%);
+    }
+
+    /* içeriği parlaklıktan etkilenmesin diye ayrı katman */
+    .content {
+      position: absolute;
+      color: white;
+      font-size: 2rem;
+      filter: brightness(200%); /* tersini uygula ki yazı net görünsün */
     }
   </style>
 </head>
 <body>
-  <h1>Hoş Geldin!</h1>
+  <div class="content">Hoş Geldin!</div>
 </body>
 </html>
