@@ -7,32 +7,159 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap" rel="stylesheet" />
   <link href="https://fonts.cdnfonts.com/css/brittany-signature" rel="stylesheet" />
   <style>
-    /* Menü linkleri ve butonlarda */
-    .menu a, .menu button {
-      font-family: 'Neue Machina', monospace;
-      font-size: clamp(18px, 4vw, 32px);
-      color: white;
-      text-decoration: none;
-      cursor: pointer;
-      position: relative;
-      transition: transform 0.3s ease, filter 0.3s ease;
-      padding: 8px 16px;
-      display: inline-block;
-      background: none;
-      border: none;
-      filter: none; /* Glow kapalı */
-      user-select: none;
+    @font-face {
+      font-family: 'Neue Machina';
+      src: url('NeueMachina.otf') format('opentype');
     }
 
-    /* Alttaki kontrol butonlarının yazısını gizle */
-    .control-buttons button {
-      width: 40px;
-      height: 40px;
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
       background: transparent;
-      border: 1px solid white;
-      color: transparent; /* Yazı gizli */
-      user-select: none;
+      font-size: 16px;
+      cursor: url('arrow.cur'), auto;
+      position: relative;
+      color: white;
     }
+
+    body::before {
+      content: "";
+      pointer-events: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background:
+        repeating-linear-gradient(
+          rgba(0,0,0,0.3) 0 1px,
+          transparent 1px 3px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,0,0,0.06),
+          rgba(0,255,0,0.02),
+          rgba(0,0,255,0.06)
+        );
+      background-size: 100% 4px, 3px 100%;
+      mix-blend-mode: multiply;
+      z-index: 9999;
+    }
+
+    .background {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('background.jpg') center/cover no-repeat;
+      filter: brightness(50%);
+      z-index: -1;
+    }
+
+    .centered-wrapper {
+      margin-top: 10vh;
+      width: 90%;
+      max-width: 700px;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+
+     /* Logo neon efektleri hep kalsın */
+  .dm-text {
+    font-family: 'DM Sans', sans-serif;
+    fill: white;
+    font-size: clamp(24px, 4vw, 48px);
+    filter: url(#shadow);
+  }
+  
+  .brittany-text {
+    font-family: 'Brittany Signature', cursive;
+    fill: #38b6ff;
+    font-size: clamp(30px, 6vw, 64px);
+    filter: url(#neon);
+  }
+  
+  /* Menü linklerinde mavi glow sadece hoverda gelsin */
+  .menu a, .menu button {
+    font-family: 'Neue Machina', monospace;
+    font-size: clamp(18px, 4vw, 32px);
+    color: white;
+    text-decoration: none;
+    cursor: url('pointer.cur'), pointer;
+    position: relative;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    padding: 8px 16px;
+    display: inline-block;
+    background: none;
+    border: none;
+    filter: none; /* Sürekli glow kapalı */
+    user-select: none;
+  }
+  
+  .menu a:hover, .menu button:hover {
+    transform: scale(1.2);
+    filter:
+      drop-shadow(0 0 5px #38b6ff); /* Hoverda mavi glow aktif */
+  }
+  
+  /* glitch efektleri başlangıçta gizli */
+  .menu a::before,
+  .menu a::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    color: #0ff;
+    clip: rect(0, 9999px, 18px, 0);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  /* sadece hoverda glitch gözükür */
+  .menu a:hover::before,
+  .menu a:hover::after {
+    opacity: 1;
+  }
+  
+  .menu a:hover::before {
+    animation: glitchTop 0.3s infinite linear alternate-reverse;
+  }
+  
+  .menu a:hover::after {
+    animation: glitchBottom 0.3s infinite linear alternate-reverse;
+    color: #f0f;
+  }
+
+  @keyframes glitchTop {
+    0% { clip: rect(0, 9999px, 12px, 0); transform: translate(-2px, -1px); }
+    100% { clip: rect(0, 9999px, 18px, 0); transform: translate(2px, 1px); }
+  }
+
+  @keyframes glitchBottom {
+    0% { clip: rect(12px, 9999px, 18px, 0); transform: translate(2px, -1px); }
+    100% { clip: rect(10px, 9999px, 16px, 0); transform: translate(-2px, 1px); }
+  }
+
+  /* Buton gruplarına aralık */
+  .top-row, .centered-buttons, .bottom-buttons {
+    margin-bottom: 1em;
+    text-align: center;
+  }
+
+  .control-buttons {
+    margin-top: 2em;
+    text-align: center;
+  }
+
+  .control-buttons button {
+    margin: 0 10px;
+  }
   </style>
 </head>
 <body>
