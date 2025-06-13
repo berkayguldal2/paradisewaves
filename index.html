@@ -11,18 +11,17 @@
       height: 100vh;
       position: relative;
       overflow: hidden;
-      background: url('background.jpg') center/cover no-repeat;
+      font-size: 16px; /* temel font büyüklüğü */
     }
-    
-    body::before {
-      content: "";
+
+    .background {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: inherit; /* arkaplanı al */
+      background: url('background.jpg') center/cover no-repeat;
       filter: brightness(50%);
       z-index: -1;
-      pointer-events: none; /* tıklamaları engelleme */
     }
+
     .centered-wrapper {
       position: absolute;
       top: 25%; /* ortala */
@@ -53,12 +52,30 @@
       dominant-baseline: middle;
       alignment-baseline: middle;
     }
+
+    /* Mobil için font büyütme */
+    @media (max-width: 600px) {
+      svg {
+        width: 90vw;
+        height: auto;
+      }
+
+      .dm-text {
+        font-size: 70px !important;
+      }
+
+      .brittany-text {
+        font-size: 100px !important;
+      }
+    }
   </style>
 </head>
 <body>
 
+  <div class="background"></div>
+
   <div class="centered-wrapper">
-    <svg viewBox="0 0 700 350">
+    <svg viewBox="0 0 700 350" preserveAspectRatio="xMidYMid meet">
       <defs>
         <path id="curve1" d="M120,170 A350,200 0 0,1 580,170" />
         <path id="curve2" d="M120,220 A350,200 0 0,1 580,220" />
@@ -81,7 +98,7 @@
       </text>
 
       <text class="brittany-text">
-        <textPath href="#curve2" startOffset="60%" text-anchor="middle">
+        <textPath href="#curve2" startOffset="65%" text-anchor="middle">
           waves
         </textPath>
       </text>
