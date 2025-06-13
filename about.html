@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Markdown Viewer</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background: #e0e0e0; /* Gri arka plan */
+      font-family: sans-serif;
+      color: #222;
+      padding: 2em;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      background: white;
+      max-width: 800px;
+      width: 100%;
+      padding: 2em;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .container h1, .container h2, .container h3 {
+      color: #333;
+    }
+
+    .container pre {
+      background: #f4f4f4;
+      padding: 1em;
+      overflow-x: auto;
+    }
+
+    .container code {
+      background: #f0f0f0;
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+    }
+
+    .container a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    .container a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="markdown-content">
+    Loading markdown...
+  </div>
+
+  <script>
+    fetch('readme.md')
+      .then(response => {
+        if (!response.ok) throw new Error('Markdown dosyası bulunamadı.');
+        return response.text();
+      })
+      .then(text => {
+        document.getElementById('markdown-content').innerHTML = marked.parse(text);
+      })
+      .catch(error => {
+        document.getElementById('markdown-content').innerText = 'Hata: ' + error.message;
+      });
+  </script>
+
+</body>
+</html>
