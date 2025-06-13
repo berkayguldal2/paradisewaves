@@ -151,15 +151,24 @@
     margin-bottom: 1em;
     text-align: center;
   }
-
-  .control-buttons {
-    margin-top: 2em;
-    text-align: center;
-  }
-
-  .control-buttons button {
-    margin: 0 10px;
-  }
+  @media (max-width: 480px) {
+    .centered-wrapper {
+      width: 95%;
+      margin-top: 5vh;
+    }
+    svg {
+      font-size: smaller;
+    }
+    .dm-text {
+      font-size: clamp(18px, 6vw, 32px);
+    }
+    .brittany-text {
+      font-size: clamp(20px, 8vw, 40px);
+    }
+    .menu a, .menu button {
+      font-size: clamp(14px, 5vw, 20px);
+      padding: 6px 10px;
+    }
   </style>
 </head>
 <body>
