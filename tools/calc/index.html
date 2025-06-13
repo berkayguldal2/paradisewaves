@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Değer + Döviz Hesaplayıcı</title>
+  <title>Değer Hesaplayıcı</title>
   <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
     body {
       font-family: sans-serif;
       background: #000;
@@ -12,7 +18,6 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: 0;
     }
     .box {
       width: 320px;
@@ -42,4 +47,89 @@
     .row {
       margin-top: 10px;
       display: flex;
-      justify-content: space-betwe
+      justify-content: space-between;
+      gap: 10px;
+    }
+    select {
+      width: 45%;
+    }
+    button {
+      width: 45%;
+      background: #fff;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border: none;
+    }
+    button:hover {
+      background: #ccc;
+    }
+    .result {
+      margin-top: 15px;
+      font-size: 14px;
+      white-space: pre-line;
+      min-height: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <input id="alis" type="number" placeholder="Alış fiyatı" step="0.01" />
+    <input id="birim" type="number" placeholder="Birim" step="1" />
+    <input id="guncel" type="number" placeholder="Şu anki fiyat" step="0.01" />
+
+    <div class="row">
+      <select id="birimTipi">
+        <option value="TL">TL</option>
+        <option value="USD">Dolar</option>
+      </select>
+      <button onclick="hesapla()">Hesapla</button>
+    </div>
+
+    <div class="result" id="sonuc">Kur yükleniyor...</div>
+  </div>
+
+  <script>
+    let usdToTry = null;
+    fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json')
+      .then(r => r.json())
+      .then(d => {
+        usdToTry = d.usd.try;
+        document.getElementById('sonuc').innerText = 'Güncel 1 $ → ' + usdToTry + ' ₺';
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById('sonuc').innerText = 'Kur yüklenemedi';
+      });
+
+    function hesapla() {
+      const alis = parseFloat(document.getElementById('alis').value),
+            birim = parseFloat(document.getElementById('birim').value),
+            guncel = parseFloat(document.getElementById('guncel').value),
+            tip = document.getElementById('birimTipi').value;
+
+      if ([alis, birim, guncel].some(v => isNaN(v))) {
+        document.getElementById('sonuc').innerText = 'Lütfen tüm alanları doldurun.';
+        return;
+      }
+
+      const toplamDeger = birim * guncel;
+      let sonuc = `Toplam Değer: ${toplamDeger.toFixed(2)} ${tip}\n`;
+
+      if (usdToTry) {
+        if (tip === 'TL') {
+          const usd = (toplamDeger / usdToTry).toFixed(4);
+          sonuc += `≈ ${usd} $`;
+        } else {
+          const tl = (toplamDeger * usdToTry).toFixed(2);
+          sonuc += `≈ ${tl} TL`;
+        }
+      } else {
+        sonuc += ' (kur bilgisi yüklenmedi)';
+      }
+      document.getElementById('sonuc').innerText = sonuc;
+    }
+  </script>
+</body>
+</html>
