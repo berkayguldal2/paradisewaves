@@ -94,7 +94,7 @@
     .form-section input {
       background: transparent;
       border: none;
-      border-bottom: 2px solid white;
+      border-bottom: 3px solid white;
       color: white;
       font-family: 'Neue Machina', monospace;
       font-size: clamp(18px, 4vw, 28px);
@@ -113,7 +113,6 @@
       background: none;
       border: none;
       color: white;
-      border-bottom: 2px solid white;
       cursor: url('/pointer.cur'), pointer;
     }
 
@@ -168,8 +167,8 @@
     </svg>
 
     <div class="form-section">
-      <input type="text" id="longUrl" />
-      <input type="text" id="accessPoint" />
+      <input type="text" id="longUrl" placeholder="enter long url"/>
+      <input type="text" id="accessPoint" placeholder="enter access point"/>
       <button onclick="submitUrl()">shorten</button>
     </div>
   </div>
