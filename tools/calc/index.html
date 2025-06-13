@@ -2,19 +2,56 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8"/>
-  <title>Değer + Döviz Hesaplayıcı</title>
+  <title>Hesap Makinesi</title>
   <style>
-    body{font-family:sans-serif;background:#000;color:#fff;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}
-    .box{width:320px} input,select,button{width:100%;padding:10px;margin-top:10px;background:#111;color:#fff;border:1px solid #555;border-radius:5px}
-    button{background:#fff;color:#000;font-weight:bold;cursor:pointer}
-    .result{margin-top:15px;font-size:14px;white-space:pre-line}
+    body {
+      font-family: sans-serif;
+      background: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .box {
+      width: 320px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 12px 10px;
+      margin-top: 10px;
+      background: #111;
+      color: #fff;
+      border: 1px solid #555;
+      border-radius: 5px;
+      font-size: 16px;
+      box-sizing: border-box;
+      appearance: none; /* select kutusu için */
+    }
+    button {
+      background: #fff;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background: #ccc;
+    }
+    .result {
+      margin-top: 15px;
+      font-size: 14px;
+      white-space: pre-line;
+      min-height: 40px;
+    }
   </style>
 </head>
 <body>
   <div class="box">
-    <input id="alis" type="number" placeholder="Alış fiyatı" step="0.01">
-    <input id="birim" type="number" placeholder="Birim" step="1">
-    <input id="guncel" type="number" placeholder="Şu anki fiyat" step="0.01">
+    <input id="alis" type="number" placeholder="Alış fiyatı" step="0.01" />
+    <input id="birim" type="number" placeholder="Birim" step="1" />
+    <input id="guncel" type="number" placeholder="Şu anki fiyat" step="0.01" />
     <select id="birimTipi">
       <option value="TL">TL</option>
       <option value="USD">Dolar</option>
@@ -28,33 +65,35 @@
     // Kur bilgisi çekiliyor
     fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json')
       .then(r => r.json())
-      .then(d=>{
+      .then(d => {
         usdToTry = d.usd.try;
         document.getElementById('sonuc').innerText = 'Güncel 1 $ → ' + usdToTry + ' ₺';
       })
-      .catch(err=>{
+      .catch(err => {
         console.error(err);
         document.getElementById('sonuc').innerText = 'Kur yüklenemedi';
       });
 
-    function hesapla(){
-      const alis=parseFloat(document.getElementById('alis').value),
-            birim=parseFloat(document.getElementById('birim').value),
-            guncel=parseFloat(document.getElementById('guncel').value),
-            tip=document.getElementById('birimTipi').value;
+    function hesapla() {
+      const alis = parseFloat(document.getElementById('alis').value),
+            birim = parseFloat(document.getElementById('birim').value),
+            guncel = parseFloat(document.getElementById('guncel').value),
+            tip = document.getElementById('birimTipi').value;
 
-      if([alis,birim,guncel].some(v=>isNaN(v))){
-        document.getElementById('sonuc').innerText='Lütfen tüm alanları doldurun.';
+      if ([alis, birim, guncel].some(v => isNaN(v))) {
+        document.getElementById('sonuc').innerText = 'Lütfen tüm alanları doldurun.';
         return;
       }
+
       const toplamDeger = birim * guncel;
       let sonuc = `Toplam Değer: ${toplamDeger.toFixed(2)} ${tip}\n`;
-      if(usdToTry){
-        if(tip==='TL'){
-          const usd=(toplamDeger / usdToTry).toFixed(4);
+
+      if (usdToTry) {
+        if (tip === 'TL') {
+          const usd = (toplamDeger / usdToTry).toFixed(4);
           sonuc += `≈ ${usd} $`;
         } else {
-          const tl=(toplamDeger * usdToTry).toFixed(2);
+          const tl = (toplamDeger * usdToTry).toFixed(2);
           sonuc += `≈ ${tl} TL`;
         }
       } else {
