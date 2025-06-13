@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,22 +7,20 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap" rel="stylesheet" />
   <link href="https://fonts.cdnfonts.com/css/brittany-signature" rel="stylesheet" />
   <style>
-    /* ... (senin CSS’in aynen buraya gelecek) ... */
-
     /* Menü linkleri ve butonlarda */
     .menu a, .menu button {
       font-family: 'Neue Machina', monospace;
       font-size: clamp(18px, 4vw, 32px);
       color: white;
       text-decoration: none;
-      cursor: url('pointer.cur'), pointer;
+      cursor: pointer;
       position: relative;
       transition: transform 0.3s ease, filter 0.3s ease;
       padding: 8px 16px;
       display: inline-block;
       background: none;
       border: none;
-      filter: none; /* Sürekli glow kapalı */
+      filter: none; /* Glow kapalı */
       user-select: none;
     }
 
@@ -43,15 +41,12 @@
 
   <div class="centered-wrapper">
     <svg viewBox="0 0 700 350" preserveAspectRatio="xMidYMid meet">
-      <!-- SVG içeriği aynı -->
       <defs>
         <path id="curve1" d="M120,170 A350,200 0 0,1 580,170" />
         <path id="curve2" d="M120,220 A350,200 0 0,1 580,220" />
-
         <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
           <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="black" />
         </filter>
-
         <filter id="neon" x="-45%" y="-45%" width="200%" height="200%">
           <feDropShadow dx="0" dy="0" stdDeviation="1" flood-color="#0ff" />
           <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#0ff" />
@@ -75,88 +70,42 @@
 
   <div class="menu">
     <div class="top-row">
-      <a href="http://paradisewaves.fun/socials"
-         data-tr-text="sosyal" data-en-text="socials"
-         data-tr-href="http://paradisewaves.fun/sosyal" data-en-href="http://paradisewaves.fun/socials"
-         id="link-socials"
-      >socials</a>
-
-      <a href="#"
-         data-tr-text="müzik Aç" data-en-text="music On"
-         data-tr-href="#"
-         data-en-href="#"
-         id="link-music"
-      >music</a>
-
-      <a href="#"
-         data-tr-text="dil" data-en-text="language"
-         data-tr-href="#"
-         data-en-href="#"
-         id="link-language"
-      >language</a>
+      <a href="http://paradisewaves.fun/socials" id="link-socials">socials</a>
+      <a href="#" id="link-music">music On</a>
+      <a href="#" id="link-language">language</a>
     </div>
 
     <div class="centered-buttons">
-      <a href="http://paradisewaves.fun/tools" data-text="tools">tools</a>
-      <a href="http://paradisewaves.fun/files" data-text="files">files</a>
-      <a href="http://paradisewaves.fun/redirects" data-text="redirects">redirects</a>
+      <a href="http://paradisewaves.fun/tools">tools</a>
+      <a href="http://paradisewaves.fun/files">files</a>
+      <a href="http://paradisewaves.fun/redirects">redirects</a>
     </div>
 
     <div class="bottom-buttons">
-      <a href="http://paradisewaves.fun/about" data-text="about">about</a>
-      <a href="http://paradisewaves.fun/projects" data-text="projects">projects</a>
-      <a href="http://paradisewaves.fun/contact" data-text="contact">contact</a>
+      <a href="http://paradisewaves.fun/about">about</a>
+      <a href="http://paradisewaves.fun/projects">projects</a>
+      <a href="http://paradisewaves.fun/contact">contact</a>
     </div>
 
     <div class="control-buttons">
-      <!-- Butonlar sadece işlev için, yazıları gizli -->
-      <button id="music-toggle" title="Müzik Aç/Kapat"></button>
-      <button id="language-toggle" title="Dili Değiştir"></button>
+      <button id="music-toggle" title="Toggle Music"></button>
+      <button id="language-toggle" title="Change Language"></button>
     </div>
   </div>
 
   <audio id="background-music" src="music.mp3" loop></audio>
 
   <script>
-    // Elementler
     const musicBtn = document.getElementById('music-toggle');
     const langBtn = document.getElementById('language-toggle');
     const audio = document.getElementById('background-music');
-
-    // Linkler
     const linkMusic = document.getElementById('link-music');
-    const linkLanguage = document.getElementById('link-language');
-    const linkSocials = document.getElementById('link-socials');
 
-    // Ayarlar
-    let language = localStorage.getItem('language') || 'tr';
     let musicPlaying = localStorage.getItem('musicPlaying') === 'true';
 
-    // UI Güncelle
     function updateUI() {
-      // Dil metinleri ve link hrefleri güncelle
-      document.querySelectorAll('.menu a').forEach(a => {
-        if(a.dataset.trText && a.dataset.enText) {
-          if(language === 'tr') {
-            a.textContent = a.dataset.trText;
-            if(a.dataset.trHref) a.href = a.dataset.trHref;
-          } else {
-            a.textContent = a.dataset.enText;
-            if(a.dataset.enHref) a.href = a.dataset.enHref;
-          }
-        }
-      });
+      linkMusic.textContent = musicPlaying ? 'music Off' : 'music On';
 
-      // Müzik linkinin metnini müzik duruma göre güncelle
-      if(language === 'tr') {
-        linkMusic.textContent = musicPlaying ? 'müzik Kapalı' : 'müzik Aç';
-        linkLanguage.textContent = 'dil';
-      } else {
-        linkMusic.textContent = musicPlaying ? 'music Off' : 'music On';
-        linkLanguage.textContent = 'language';
-      }
-
-      // Eğer müzik çalıyorsa, audio oynatılır
       if(musicPlaying && audio.paused) {
         audio.play().catch(() => {});
       } else if(!musicPlaying && !audio.paused) {
@@ -164,25 +113,14 @@
       }
     }
 
-    // Müzik toggle
     function toggleMusic() {
       musicPlaying = !musicPlaying;
       localStorage.setItem('musicPlaying', musicPlaying);
       updateUI();
     }
 
-    // Dil toggle
-    function toggleLanguage() {
-      language = (language === 'tr') ? 'en' : 'tr';
-      localStorage.setItem('language', language);
-      updateUI();
-    }
-
-    // Event listenerlar
     musicBtn.addEventListener('click', toggleMusic);
-    langBtn.addEventListener('click', toggleLanguage);
 
-    // Sayfa yüklendiğinde
     window.addEventListener('load', () => {
       updateUI();
     });
