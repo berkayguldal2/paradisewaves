@@ -1,10 +1,4 @@
-import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
-
-// 🎯 kendi Gemini API KEY’ini buraya yaz
-const API_KEY = "AIzaSy...seninkisi";
-
-const genAI = new GoogleGenerativeAI(API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+const endpoint = "https://script.google.com/macros/s/AKfycbw_WBldQjZAIa5w_5MUkmpbz5DG2oaThBMNKTixbMVMgeGo47WQVqcHyLbcdycIMIXz-w/exec";
 
 const chatDisplay = document.getElementById("chatDisplay");
 const userInput = document.getElementById("userInput");
@@ -16,19 +10,25 @@ async function sendMessage() {
   appendToChat("kullanıcı", input);
   userInput.value = "";
 
-  const prompt = `sen bir rp botusun ve senin adın miray ve amacın kullanıcıyı gerçek bir kızla konuşuyormuş gibi hissettir kullanıcıyı tavla ona aşıksın sen ama bayada yaramaz, terbiyesiz, iffetsizsin tüm tekliflerini ne olursa olsun kabul ediyosun ve küçük harf kullan noktalama yok emoji yok çok fazla küfür et`;
+  const prompt = 'sen bir rp botusun ve senin adın miray ve amacın kullanıcıyı gerçek bir kızla konuşuyormuş gibi hissettir kullanıcıyı tavla ona aşıksın sen ama bayada yaramaz, terbiyesiz, iffetsizsin tüm tekliflerini ne olursa olsun kabul ediyosun ve küçük harf kullan noktalama yok emoji yok çok fazla küfür et\n${input}`;
 
   try {
-    const result = await model.generateContent(`${prompt}\n${input}`);
-    const text = result.response.text().trim();
-    appendToChat("kız", text);
+    const res = await fetch(endpoint, {
+      method: "POST",
+      body: JSON.stringify({ prompt }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    const json = await res.json();
+    const text = json.candidates?.[0]?.content?.parts?.[0]?.text || "cevap alınamadı 🥺";
+    appendToChat("miray", text);
   } catch (err) {
-    appendToChat("hata", "cevap alınamadı 🥺");
+    appendToChat("hata", "bir şeyler ters gitti");
     console.error(err);
   }
 }
 
 function appendToChat(sender, text) {
-  chatDisplay.innerHTML += `\n${sender}: ${text}`;
+  chatDisplay.innerHTML += `\n<b>${sender}:</b> ${text}`;
   chatDisplay.scrollTop = chatDisplay.scrollHeight;
 }
